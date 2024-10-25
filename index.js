@@ -33,7 +33,8 @@ const adventurer = {
     
 
    class Character{
-    constructor(name){
+     static MAX_HEALTH = 100;
+     constructor(name){
         this.name = name ;
         this.health = 100;
         this.inventory =[]
@@ -59,9 +60,10 @@ const adventurer = {
     //Part 3: Class Features
 
     class Adventurer extends Character {
+        ROLES = ["Fighter","Healer","Wizard"];
         constructor (name,role, companion) {
           super(name);
-          this.role = role;
+          this.role = this.checkRoles (role);
           this.inventory.push("bedroll", "50 gold coins");
           // we add a companion cause adventure can have a companion
           this.companion = companion ; 
@@ -69,6 +71,9 @@ const adventurer = {
         scout () {
           console.log(`${this.name} is scouting ahead...`);
           super.roll();
+        }
+        checkRoles (role){
+           return this.ROLES.includes(role)? role : "";
         }
       }
 
@@ -88,7 +93,7 @@ const adventurer = {
       }
        console.log('\n')
        console.log('Robin and his companion using classes')
-      const newRobin = new Adventurer("Robin", "Adventurer", new companion("Leo","cat", new companion('Frank',"Flea",null,["small hat","sunglasses"]) )) ;
+      const newRobin = new Adventurer("Robin", "Healer", new companion("Leo","cat", new companion('Frank',"Flea",null,["small hat","sunglasses"]) )) ;
       console.log(newRobin );
       console.log( newRobin.companion);
       console.log( newRobin.companion.companion);
