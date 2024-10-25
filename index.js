@@ -41,7 +41,8 @@ const adventurer = {
     }
     roll (mod = 0) {
         const result = Math.floor(Math.random() * 20) + 1 + mod;
-        console.log(`${this.name} rolled a ${result}.`)
+        console.log(`${this.name} rolled a ${result}.`);
+        return result;
         }
 
    }
@@ -75,6 +76,19 @@ const adventurer = {
         checkRoles (role){
            return this.ROLES.includes(role)? role : "";
         }
+        // add duel here
+        duel(adventurer){
+           console.log(`the battle between ${this.name} and ${adventurer.name} is about to begin , enjoy the show`)
+           let roundCount = 1;
+           while(this.health>50 && adventurer.health >50) {
+            console.log(`Round : ${roundCount}`)
+            if(this.roll() > adventurer.roll()) {adventurer.health --; console.log(this.name + ` won this round , 1 point will be deduct from ` + adventurer.name)}
+            else { this.health --; console.log(adventurer.name + ` won this round , 1 point will be deduct from ` + this.name)}
+            roundCount++;
+           }
+           if (this.health > 50) return this.name
+           else return adventurer.name
+        }
       }
 
       class companion extends Character {
@@ -102,4 +116,12 @@ const adventurer = {
        newRobin.roll();
       
 
-       //
+       //Part 6: Developing Skills
+       // after adding duel(adventure) method to adventure class
+   
+     const samir = new Adventurer("samir","Healer", new companion("Jack","dog",null))
+     const nesta = new Adventurer("nesta","Wizard", new companion("debbie","cat",null))
+
+     console.log("the winner is  " + samir.duel(nesta))
+     
+      
