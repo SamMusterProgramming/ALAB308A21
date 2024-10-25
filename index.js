@@ -123,5 +123,11 @@ const adventurer = {
      const nesta = new Adventurer("nesta","Wizard", new companion("debbie","cat",null))
 
      console.log("the winner is  " + samir.duel(nesta))
+     console.log("\n")
+     // i don't we need to alter adventurer or companion classes or add new properties for wizard / fighter adventurers
+     // example let's test the battle between Samir and his dog
+     samir.health = 100; // reinitialise samir's health to 100
+     console.log("the winner is  " + samir.duel(samir.companion))
+
      
       
